@@ -48,11 +48,26 @@ public class MemberController {
         }
         return jsonObject.toJSONString();
     }
-    @RequestMapping("/getUsername")
+    @ResponseBody
+    @RequestMapping(value = "/getUsername",produces = "application/json;charset=utf-8")
     public String getUsername(String username){
         Member login = memberService.login(username);
         JSONObject jsonObject = new JSONObject();
         if(login == null){
+            jsonObject.put("msg",true);
+        }else{
+            jsonObject.put("msg",false);
+        }
+        return jsonObject.toJSONString();
+    }
+    @ResponseBody
+    @RequestMapping(value = "/getTel",produces = "application/json;charset=utf-8")
+    public String getTel(String tel){
+        System.out.println("tel = " + tel);
+        Member memberByTel = memberService.getMemberByTel(tel);
+        System.out.println("memberByTel = " + memberByTel);
+        JSONObject jsonObject = new JSONObject();
+        if(memberByTel == null){
             jsonObject.put("msg",true);
         }else{
             jsonObject.put("msg",false);

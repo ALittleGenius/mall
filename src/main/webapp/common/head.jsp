@@ -83,18 +83,10 @@
                     <%--菜单--%>
                     <nav class="menu">
                         <ul class="main-menu">
-                            <li><a href="index.html">主页</a></li>
-
-                            <%--<li><a href="shop.html">分类</a>
-                                <ul>--%>
-                                    <c:forEach items="${applicationScope.category}" var="category">
-                                        <li><a>${category.name}</a></li>
-                                    </c:forEach>
-                               <%-- </ul>
-                            </li>--%>
-                            <%--<li><a href="shop-list.html">Shop List</a></li>--%>
-                           <%-- <li><a href="cart.html">购物车</a></li>
-                            <li><a href="checkout.html">订单</a></li>--%>
+                            <li><a href="${path}/index.jsp">主页</a></li>
+                                <c:forEach items="${applicationScope.category}" var="category">
+                                    <li><a>${category.name}</a></li>
+                                </c:forEach>
                             <li><a href="contact-us.html">联系我们</a></li>
                             <li><a href="about-us.html">关于我们</a></li>
                         </ul>

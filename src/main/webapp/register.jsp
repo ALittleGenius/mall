@@ -23,39 +23,86 @@
             font-size: 14px;
             color: red;
         }
+        input{
+            display: inline-block;
+            margin: 0 auto;
+        }
+        .input{
+            width: 800px;
+            padding-left: 250px;
+            margin: 0 auto;
+        }
     </style>
     <script type="text/javascript">
         $(function () {
             $("#username").blur(function () {
-                console.log("aaaa");
-                $.ajax({
-                    url:"${path}/member/getUsername",
-                    type:'post',
-                    data:{
-                        username:$(this).val()
-                    },
-                    success:function (result) {
-                        if(result.msg){
-                            $("#username").next().css("color","green");
-                            $("#username").next().text("✔");
-                        }else{
-                            $("#username").next().css("color","red");
-                            $("#username").next().text("该用户名已存在!");
+                if($(this).val()){
+                    $.ajax({
+                        url:"${path}/member/getUsername",
+                        type:'post',
+                        data:{
+                            username:$(this).val()
+                        },
+                        success:function (result) {
+                            console.log(result.msg);
+                            if(result.msg){
+                                $("#username").next().css("color","green");
+                                $("#username").next().text("✔");
+                            }else{
+                                $("#username").next().css("color","red");
+                                $("#username").next().text("该用户名已存在!");
+                            }
+                        },
+                        error:function () {
+
                         }
-                    }
-                })
+                    });
+                }
+
             });
+
+            $("#tel").blur(function () {
+                if($(this).val()){
+                    $.ajax({
+                        url:"${path}/member/getTel",
+                        type:'post',
+                        data:{
+                            tel:$("#tel").val()
+                        },
+                        success:function (result) {
+                            if(result.msg){
+                                $("#tel").next().css("color","green");
+                                $("#tel").next().text("✔");
+                            }else{
+                                $("#tel").next().css("color","red");
+                                $("#tel").next().text("该手机号已被注册!");
+                            }
+                        },
+                        error:function () {
+
+                        }
+                    });
+                }
+
+            });
+
+            $("#password1").blur(function () {
+
+                var password = $("#password").val();
+                var password1 = $("#password1").val();
+                if(password && password1){
+                    if(password!=password1){
+                        $("#tel").next().css("color","red");
+                        $("#tel").next().text("两次密码不一致!");
+                    }else{
+                        $(this).next().css("color","green");
+                        $(this).next().text("✔");
+                    }
+                }
+
+            });
+
         });
-
-        function tel() {
-
-        };
-        function password() {
-            
-        };
-
-
-
         function register() {
             var username = $("#username").val();
             var password = $("#password").val();
@@ -101,12 +148,7 @@
 <body>
 
 
-<div class="noo-spinner">
-    <div class="spinner">
-        <div class="cube1"></div>
-        <div class="cube2"></div>
-    </div>
-</div>
+<jsp:include page="common/head1.jsp"/>
 
 <div class="site">
     <%--head--%>
@@ -149,21 +191,36 @@
                         </div>
 
                         <div>
-                            <form style="width: 500px; text-align: center; margin: 0 auto;padding:auto" >
-                                <input  type="text"  style="width: 300px;" id="username" name="username" placeholder="用户名"/>
-                                <span></span>
-                                <br/><br/>
-                                <input type="password" style="width: 300px; " id="password" name="password" placeholder="密码"/>
-                                <span></span>
-                                <br/><br/>
-                                <input type="password" style="width: 300px; " id="password1" name="password1" placeholder="确认密码"/>
-                                <span></span>
-                                <br/><br/>
-                                <input type="tel" style="width: 300px; " id="tel" name="tel" placeholder="手机号"/>
-                                <span></span>
-                                <br/><br/>
-                                <input type="button" id="button" onclick="register()" style="width: 300px;" value="注册"/>
-                                <span></span>
+                            <form  >
+                                <div class="input">
+                                    <input  type="text"  style="width: 300px;" id="username" name="username" placeholder="用户名"/>
+                                    <span></span>
+                                </div>
+
+                                <br/>
+                                <div class="input">
+                                    <input type="password"  style="width: 300px; " id="password" name="password" placeholder="密码"/>
+                                    <span></span>
+                                </div>
+
+                                <br/>
+                                <div class="input">
+                                    <input type="password"  style="width: 300px; " id="password1" name="password1" placeholder="确认密码"/>
+                                    <span></span>
+                                </div>
+
+                                <br/>
+                                <div class="input">
+                                    <input type="tel"  style="width: 300px; " id="tel" name="tel" placeholder="手机号"/>
+                                    <span></span>
+                                </div>
+
+                                <br/>
+                                <div class="input">
+                                    <input type="button" id="button" onclick="register()" style="width: 300px;" value="注册"/>
+                                    <span></span>
+                                </div>
+
                             </form>
 
                         </div>

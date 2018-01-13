@@ -29,4 +29,9 @@ public class MemberServiceImpl implements MemberService{
             return 0;
         }
     }
+
+    @Override
+    public Member getMemberByTel(String tel) {
+        return memberMapper.queryMemberByTel(tel);
+    }
 }

@@ -16,4 +16,6 @@ public interface MemberService {
      * @return
      */
     public int register(Member member);
+
+    public Member getMemberByTel(String tel);
 }

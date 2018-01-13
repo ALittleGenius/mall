@@ -60,12 +60,7 @@
 <body>
 
 
-<div class="noo-spinner">
-    <div class="spinner">
-        <div class="cube1"></div>
-        <div class="cube2"></div>
-    </div>
-</div>
+<jsp:include page="common/head1.jsp"/>
 
 <div class="site">
     <%--head--%>

@@ -18,25 +18,7 @@
 
 
 
-<div class="noo-spinner">
-    <div class="spinner">
-        <div class="cube1"></div>
-        <div class="cube2"></div>
-    </div>
-</div>
-<%--<div id="menu-slideout" class="slideout-menu hidden-md-up">
-    <div class="mobile-menu">
-        <ul id="mobile-menu" class="menu">
-            <li><a href="index.html">首页</a></li>
-            <li><a href="about-us.html">关于我们</a></li>
-            <li><a href="shop.html">店</a></li>
-            <li><a href="shop-list.html">Shop List</a></li>
-            <li><a href="cart.html">购物车</a></li>
-            <li><a href="checkout.html">订单</a></li>
-            <li><a href="contact-us.html">联系我们</a></li>
-        </ul>
-    </div>
-</div>--%>
+<jsp:include page="common/head1.jsp"/>
 <div class="site">
 
     <%--head--%>
