@@ -1,16 +1,20 @@
 package com.oaec.mall.po;
 
-public class Category {
+public class Img {
     private Integer id;
     private String name;
-    private Integer productCount;
+    private String type;
+    private Integer productId;
+
+
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "Img{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", productCount=" + productCount +
+                ", type='" + type + '\'' +
+                ", productId=" + productId +
                 '}';
     }
 
@@ -30,11 +34,19 @@ public class Category {
         this.name = name;
     }
 
-    public Integer getProductCount() {
-        return productCount;
+    public String getType() {
+        return type;
     }
 
-    public void setProductCount(Integer productCount) {
-        this.productCount = productCount;
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
     }
 }

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oaec.mall.dao.ProductMapper">
+
+
+    <select id="queryProductByC" parameterType="int" resultType="product">
+        SELECT * FROM product WHERE  cid = #{cid}
+         ORDER BY salesVolume LIMIT 5
+    </select>
+
+    <select id="queryProductTop" resultType="product">
+        SELECT * FROM product
+         ORDER BY salesVolume LIMIT 5
+    </select>
+
+    <resultMap id="queryProductResultMap" type="product">
+        <id column="id" property="id"/>
+        <collection property="imgs" ofType="img" select="queryImg" column="id"/>
+        <collection property="comments" ofType="comment" select="queryComment" column="id"/>
+    </resultMap>
+    <select id="queryProductById" parameterType="int" resultMap="queryProductResultMap">
+        SELECT product.*,category.name category
+        FROM product,category
+        WHERE product.cid = category.id
+        AND product.id = #{id};
+    </select>
+    <select id="queryImg" parameterType="int" resultType="img">
+        SELECT * FROM img WHERE productId = #{productId}
+    </select>
+    <select id="queryComment" parameterType="int" resultType="comment">
+        SELECT comment.*,member.USERNAME name,member.headSculpture headSculpture
+FROM  comment,member
+WHERE comment.memberId = member.ID
+  AND productId = #{id};
+    </select>
+
+
+
+    <!--查询商品分页-->
+
+    <select id="queryProductByCid" parameterType="map" resultType="product">
+        SELECT * FROM product WHERE 1=1
+        <if test="cid != null">
+            AND cid = #{cid}
+        </if>
+        <if test="name != null">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        ORDER BY salesVolume
+        <if test="start !=null &amp;&amp; rows != null">
+            LIMIT #{start},#{rows}
+        </if>
+    </select>
+
+    <select id="queryCountByCid" parameterType="map" resultType="int">
+        SELECT count(id) FROM product WHERE 1=1
+        <if test="cid != null">
+            AND cid = #{cid}
+        </if>
+        <if test="name != null">
+            AND name LIKE concat('%',#{name},'%')
+        </if>
+        ORDER BY salesVolume
+    </select>
+</mapper>

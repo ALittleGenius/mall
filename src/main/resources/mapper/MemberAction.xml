@@ -7,13 +7,14 @@
     <select id="queryMemberByName" parameterType="string" resultType="member">
         SELECT * FROM member WHERE USERNAME = #{username}
     </select>
+
     <select id="queryMemberByTel" parameterType="string" resultType="member">
         SELECT * FROM member WHERE TEL = #{tel}
     </select>
 
     <insert id="doInsert" parameterType="member">
-        INSERT INTO member (USERNAME,PASSWORD,TEL)
-         VALUES (#{username},#{password},#{tel})
+        INSERT INTO member (USERNAME,PASSWORD,TEL,TYPE)
+         VALUES (#{username},#{password},#{tel},1)
     </insert>
 
 </mapper>

@@ -107,7 +107,7 @@
                                 <ul class="cart-list">
                                     <li>
                                         <a href="#" class="remove">×</a>
-                                        <a href="${path}/product/getProductDetail?id=${product.id}">
+                                        <a href="${path}/product/getProductDetail">
                                             <img src="${path}/static/images/shop/thumb/shop_1.jpg" alt="" />
                                             Orange Juice&nbsp;
                                         </a>
@@ -115,7 +115,7 @@
                                     </li>
                                     <li>
                                         <a href="#" class="remove">×</a>
-                                        <a href="shop-detail.html">
+                                        <a href="${path}/product/getProductDetail">
                                             <img src="${path}/static/images/shop/thumb/shop_2.jpg" alt="" />
                                             Aurore Grape&nbsp;
                                         </a>
@@ -128,7 +128,7 @@
                                     <span class="amount">$21.00</span>
                                 </p>
                                 <p class="buttons">
-                                    <a href="cart.html" class="view-cart">查看购物车</a>
+                                    <a href="${path}/car/getCar" class="view-cart">查看购物车</a>
                                     <a href="checkout.html" class="checkout">结账</a>
                                 </p>
                             </div>

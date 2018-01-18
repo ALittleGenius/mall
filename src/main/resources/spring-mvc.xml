@@ -22,23 +22,25 @@
     <mvc:annotation-driven/>
 
     <!--配置拦截器-->
-    <!--<mvc:interceptors>
-        &lt;!&ndash;配置使用的拦截器(自定义的拦截器)&ndash;&gt;
-        &lt;!&ndash;<bean class="com.hwua.spring.mvc.crud.interceptor.FirstInterceptor"/>&ndash;&gt;
+    <mvc:interceptors>
+        <!--配置使用的拦截器(自定义的拦截器)-->
+        <!--<bean class="com.hwua.spring.mvc.crud.interceptor.FirstInterceptor"/>-->
         <mvc:interceptor>
-            &lt;!&ndash;
+            <!--
                 拦截哪个地址（要拦截的路径）
                     /**:代表/下的所有路径
-            &ndash;&gt;
+            -->
             <mvc:mapping path="/**"/>
-            &lt;!&ndash;不需要拦截的目录(从拦截的目录中筛选出不需要拦截的目录)&ndash;&gt;
-            &lt;!&ndash;<mvc:exclude-mapping path="/a/**/d"/>&ndash;&gt;
+            <!--不需要拦截的目录(从拦截的目录中筛选出不需要拦截的目录)-->
+            <!--<mvc:exclude-mapping path="/a/**/d"/>-->
             <mvc:exclude-mapping path="/static/**"/>
-            <mvc:exclude-mapping path="/user/login"/>
-            &lt;!&ndash;拦截器（自己写的class）&ndash;&gt;
-            &lt;!&ndash;<bean class="com.hwua.ssm.interceptors.LoginInterceptor"/>&ndash;&gt;
+            <mvc:exclude-mapping path="/index"/>
+            <mvc:exclude-mapping path="/member/**"/>
+            <mvc:exclude-mapping path="/product/**"/>
+            <!--拦截器（自己写的class）-->
+            <bean class="com.oaec.mall.interceptors.LoginInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>-->
+    </mvc:interceptors>
 
 
 

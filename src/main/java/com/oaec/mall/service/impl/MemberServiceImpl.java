@@ -22,12 +22,11 @@ public class MemberServiceImpl implements MemberService{
     public int register(Member member) {
         Member name = memberMapper.queryMemberByName(member.getUsername());
         Member tel = memberMapper.queryMemberByTel(member.getTel());
+        int i = 0;
         if(name==null&&tel==null){
-            int i = memberMapper.doInsert(member);
-            return i;
-        }else{
-            return 0;
+             i = memberMapper.doInsert(member);
         }
+        return i;
     }
 
     @Override

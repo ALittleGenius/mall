@@ -19,30 +19,27 @@
     <script src="static/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript">
         function login1() {
-            console.log("aaaa");
             var username = $("#username").val();
             var password = $("#password").val();
             username.trim();
             password.trim();
             if(!username){
-                console.log("bbb");
                 $("#span1").text("用户名不能为空！");
             }else if(!password){
-                console.log("ccc");
                 $("#span2").text("密码不能为空！");
             }else{
-                console.log("ddd");
                 var data = {
                   name:username,
                   password:password
                 };
+
                 $.ajax({
                     url:"${path}/member/login",
                     type:'post',
                     data:data,
                     success:function (result) {
                         if(result.msg){
-                            location="index.jsp";
+                            window.location="index";
                         }else{
                             $("#span").text(result.error);
                         }

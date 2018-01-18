@@ -51,4 +51,8 @@
     <listener>
         <listener-class>com.oaec.mall.listener.IndexListener</listener-class>
     </listener>
+    
+    <!--<welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>-->
 </web-app>

@@ -21,7 +21,6 @@
         span{
             font-family: 幼圆;
             font-size: 14px;
-            color: red;
         }
         input{
             display: inline-block;
@@ -62,7 +61,7 @@
             });
 
             $("#tel").blur(function () {
-                if($(this).val()){
+                if($("#tel").val()!=null){
                     $.ajax({
                         url:"${path}/member/getTel",
                         type:'post',
@@ -92,8 +91,8 @@
                 var password1 = $("#password1").val();
                 if(password && password1){
                     if(password!=password1){
-                        $("#tel").next().css("color","red");
-                        $("#tel").next().text("两次密码不一致!");
+                        $("#password1").next().css("color","red");
+                        $("#password1").next().text("两次密码不一致!");
                     }else{
                         $(this).next().css("color","green");
                         $(this).next().text("✔");
@@ -103,46 +102,48 @@
             });
 
         });
-        function register() {
+        function register1() {
+            console.log("aaaa");
             var username = $("#username").val();
             var password = $("#password").val();
             var password1 = $("#password1").val();
             var tel = $("#tel");
             if(!username){
+                return false;
                 $("#username").next().text("请输入用户名！");
             }else if(!password){
+                return false;
                 $("#password").next().text("请输入密码！");
             }else if(!password1){
+                return false;
                 $("#password1").next().text("请确认密码！");
             }else if(!tel){
+                return false;
                 $("#tel").next().text("请输入手机号！");
             }else if(password!=password1){
+                return false;
                 $("#password1").next().text("两次密码不一致，请重新输入！");
-            }else{
-                var data = {
+            }
+                console.log("bbbb");
+                /*var data = {
                   name:username,
                   password:password,
                   tel:tel
-                };
-                $.ajax({
-                    url:"${path}/member/register",
+                };*/
+                /*$.ajax({
+                   url:'/member/register',
                     type:'post',
                     data:data,
                     success:function (result) {
-                        if(result.msg){
-                            window.location.pathname = "index.jsp"
-                        }else{
-                            $("#button").next().text("注册失败！")
-                        }
+
                     },
                     error:function (result) {
-
+                        $("#button").next().text("404");
                     }
-                });
-            }
 
+                });*/
 
-        };
+        }
     </script>
 </head>
 <body>
@@ -191,9 +192,9 @@
                         </div>
 
                         <div>
-                            <form  >
+                            <form action="${path}/member/register" method="post">
                                 <div class="input">
-                                    <input  type="text"  style="width: 300px;" id="username" name="username" placeholder="用户名"/>
+                                    <input  type="text"  style="width: 300px;" id="username" name="name" placeholder="用户名"/>
                                     <span></span>
                                 </div>
 
@@ -217,7 +218,7 @@
 
                                 <br/>
                                 <div class="input">
-                                    <input type="button" id="button" onclick="register()" style="width: 300px;" value="注册"/>
+                                    <input type="submit" id="button" onclick="register1()" style="width: 300px;" value="注册"/>
                                     <span></span>
                                 </div>
 
@@ -234,7 +235,15 @@
 
     <jsp:include page="common/foot.jsp"/>
 </div>
-<jsp:include page="common/foot-js.jsp"/>
+<script type="text/javascript" src="${path}/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="${path}/static/js/jquery-migrate.min.js"></script>
+<script type="text/javascript" src="${path}/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${path}/static/js/modernizr-2.7.1.min.js"></script>
+<script type="text/javascript" src="${path}/static/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="${path}/static/js/jquery.countdown.min.js"></script>
+<script type='text/javascript' src='${path}/static/js/jquery.prettyPhoto.js'></script>
+<script type='text/javascript' src='${path}/static/js/jquery.prettyPhoto.init.min.js'></script>
+<script type="text/javascript" src="${path}/static/js/script.js"></script>
 </body>
 </html>
 
