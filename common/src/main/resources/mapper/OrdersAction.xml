@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.oaec.common.dao.OrdersMapper">
+    <insert id="doInsert" parameterType="orders" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO orders (memberId, createTime, addressId, state)
+        VALUES(#{memberId},sysdate(),#{addressId},1)
+    </insert>
+
+    <insert id="doInsertOrderDetail" parameterType="ordersDetail">
+        INSERT INTO orders_detail (ordersId, productId, number, prices) VALUES
+        <foreach collection="list" item="ordersDetail" separator=",">
+            (#{ordersDetail.ordersId},#{ordersDetail.productId},#{ordersDetail.number},#{ordersDetail.prices})
+        </foreach>
+    </insert>
+
+    <!--根据id查询订单-->
+    <resultMap id="queryByIdResultMap" type="orders" >
+        <id column="id" property="id"/>
+        <result column="addressId" property="addressId"/>
+        <!--
+            association collection 一块用时，association要放在前面
+        -->
+        <association property="address" javaType="address" select="queryAddress" column="addressId" />
+        <collection property="ordersDetails" ofType="ordersDetail" select="queryOrdersDetail" column="id"/>
+    </resultMap>
+    <select id="queryById" parameterType="int" resultMap="queryByIdResultMap">
+        SELECT * FROM orders WHERE id = #{id}
+    </select>
+    <resultMap id="queryOrdersDetailResultMap" type="ordersDetail">
+        <id property="id" column="id"/>
+        <result property="productId" column="productId"/>
+        <association property="product" javaType="product" select="queryProduct" column="productId" />
+    </resultMap>
+    <select id="queryOrdersDetail" parameterType="int" resultMap="queryOrdersDetailResultMap">
+        select * from orders_detail WHERE ordersId = #{ordersId}
+    </select>
+    <select id="queryProduct" parameterType="int" resultType="product">
+        SELECT * FROM product WHERE id = #{id}
+    </select>
+    <select id="queryAddress" parameterType="int" resultType="address">
+        SELECT * FROM address WHERE ID = #{id}
+    </select>
+
+
+    <update id="doUpdate" parameterType="int">
+        UPDATE orders SET state = 2,addressId =#{addressId}
+        WHERE id =#{id}
+    </update>
+
+    <!--根据用户查询订单-->
+    <select id="queryByMId" parameterType="int" resultMap="queryByIdResultMap">
+        SELECT * FROM orders WHERE memberId =#{memberId}
+    </select>
+
+
+</mapper>

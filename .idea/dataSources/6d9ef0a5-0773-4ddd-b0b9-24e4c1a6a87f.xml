@@ -305,7 +305,7 @@
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <column id="79" parent="11" name="static">
+    <column id="79" parent="11" name="state">
       <Position>5</Position>
       <DataType>int(1)|0</DataType>
     </column>
@@ -408,118 +408,122 @@
       <Position>8</Position>
       <DataType>int(6)|0</DataType>
     </column>
-    <column id="101" parent="13" name="image">
+    <column id="101" parent="13" name="Keyword">
       <Position>9</Position>
+      <DataType>varchar(500)|0</DataType>
+    </column>
+    <column id="102" parent="13" name="image">
+      <Position>10</Position>
       <DataType>varchar(200)|0</DataType>
     </column>
-    <column id="102" parent="13" name="status">
-      <Position>10</Position>
+    <column id="103" parent="13" name="status">
+      <Position>11</Position>
       <DataType>int(1)|0</DataType>
     </column>
-    <index id="103" parent="13" name="fk_product_cid">
+    <index id="104" parent="13" name="fk_product_cid">
       <ColNames>cid</ColNames>
     </index>
-    <key id="104" parent="13" name="PRIMARY">
+    <key id="105" parent="13" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="105" parent="13" name="fk_product_cid">
+    <foreign-key id="106" parent="13" name="fk_product_cid">
       <ColNames>cid</ColNames>
       <RefSchemaName>mall</RefSchemaName>
       <RefTableName>category</RefTableName>
       <RefColNames>id</RefColNames>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="106" parent="14" name="dbid">
+    <column id="107" parent="14" name="dbid">
       <Position>1</Position>
       <DataType>int(12)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="107" parent="14" name="roleName">
+    <column id="108" parent="14" name="roleName">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="108" parent="14" name="roleCode">
+    <column id="109" parent="14" name="roleCode">
       <Position>3</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="109" parent="14" name="valid">
+    <column id="110" parent="14" name="valid">
       <Position>4</Position>
       <DataType>varchar(1)|0</DataType>
     </column>
-    <column id="110" parent="14" name="orders">
+    <column id="111" parent="14" name="orders">
       <Position>5</Position>
       <DataType>int(12)|0</DataType>
     </column>
-    <key id="111" parent="14" name="PRIMARY">
+    <key id="112" parent="14" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>dbid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="112" parent="15" name="dbid">
+    <column id="113" parent="15" name="dbid">
       <Position>1</Position>
       <DataType>int(12)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="113" parent="15" name="roleId">
+    <column id="114" parent="15" name="roleId">
       <Position>2</Position>
       <DataType>int(12)|0</DataType>
     </column>
-    <column id="114" parent="15" name="authId">
+    <column id="115" parent="15" name="authId">
       <Position>3</Position>
       <DataType>int(12)|0</DataType>
     </column>
-    <key id="115" parent="15" name="PRIMARY">
+    <key id="116" parent="15" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>dbid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="116" parent="16" name="dbid">
+    <column id="117" parent="16" name="dbid">
       <Position>1</Position>
       <DataType>int(12)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="117" parent="16" name="userName">
+    <column id="118" parent="16" name="userName">
       <Position>2</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="118" parent="16" name="password">
+    <column id="119" parent="16" name="password">
       <Position>3</Position>
       <DataType>varchar(36)|0</DataType>
     </column>
-    <column id="119" parent="16" name="realName">
+    <column id="120" parent="16" name="realName">
       <Position>4</Position>
       <DataType>varchar(20)|0</DataType>
     </column>
-    <column id="120" parent="16" name="valid">
+    <column id="121" parent="16" name="valid">
       <Position>5</Position>
       <Comment>1:正常，0：冻结</Comment>
       <DataType>varchar(2)|0</DataType>
     </column>
-    <key id="121" parent="16" name="PRIMARY">
+    <key id="122" parent="16" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>dbid</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="122" parent="17" name="dbid">
+    <column id="123" parent="17" name="dbid">
       <Position>1</Position>
       <DataType>int(12)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="123" parent="17" name="userId">
+    <column id="124" parent="17" name="userId">
       <Position>2</Position>
       <DataType>int(12)|0</DataType>
     </column>
-    <column id="124" parent="17" name="roleId">
+    <column id="125" parent="17" name="roleId">
       <Position>3</Position>
       <DataType>int(11)|0</DataType>
     </column>
-    <key id="125" parent="17" name="PRIMARY">
+    <key id="126" parent="17" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>dbid</ColNames>
       <Primary>1</Primary>
