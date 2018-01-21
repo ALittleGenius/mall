@@ -16,8 +16,6 @@ import java.util.Map;
 public class IndexController {
     @Autowired
     private ProductService productService;
-    @Autowired
-    private MemberCarService memberCarService;
 
     @RequestMapping("/index")
     public String index(Map<String ,Object> map, HttpSession session){
@@ -29,13 +27,6 @@ public class IndexController {
         map.put("juices",juices);
         List<Product> dried = productService.getProductByC(4);
         map.put("dried",dried);
-        /*Member member = (Member) session.getAttribute("member");
-        if(member != null){
-            List<Map<String, Object>> carByMId = memberCarService.getCarByMId(member.getId());
-            int size = carByMId.size();
-            map.put("car",carByMId);
-            map.put("size",size);
-        }*/
 
         return "index";
     }

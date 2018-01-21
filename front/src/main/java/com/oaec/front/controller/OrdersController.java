@@ -33,7 +33,6 @@ public class OrdersController {
     @ResponseBody
     @RequestMapping(value = "/addOrders",produces = "application/json;charset=utf-8")
     public String addOrders(Integer[] carIds,Double[] prices, HttpSession session){
-        System.out.println("carIds = [" + Arrays.toString(carIds)+ "], prices = [" + Arrays.toString(prices) + "]" );
         Member member = (Member) session.getAttribute("member");
         Orders orders = new Orders();
         orders.setMemberId(member.getId());
@@ -67,11 +66,17 @@ public class OrdersController {
     }
 
     @RequestMapping("/getOrders")
-    public ModelAndView getOrders(Integer ordersId,Integer addressId){
+    public ModelAndView getOrders(Integer ordersId,Integer addressId,HttpSession session){
         System.out.println("orderId = " + ordersId);
         ModelAndView modelAndView = new ModelAndView("orders");
         Orders orders = ordersService.getOrders(ordersId);
-        Address address = addressService.getAddress(addressId);
+        Address address = null;
+        if(addressId != null){
+            address = addressService.getAddress(addressId);
+        }else{
+            Member member = (Member) session.getAttribute("member");
+            address = addressService.getAddressDefault(member.getId());
+        }
         modelAndView.addObject("orders",orders);
         modelAndView.addObject("address",address);
         return modelAndView;

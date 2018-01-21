@@ -13,5 +13,38 @@
             AND type = 2
         </if>
     </select>
+    <select id="getAddressAll" parameterType="int" resultType="address">
+        SELECT * FROM address WHERE memberId = #{memberId} AND type > 0
+    </select>
+    <select id="getAddressDefault" parameterType="int" resultType="address">
+        SELECT * FROM address WHERE memberId = #{memberId}
+        AND type = 2
+    </select>
+    <update id="deleteAddress" parameterType="int" >
+        UPDATE address SET type = 0 WHERE ID = #{id}
+    </update>
+
+    <update id="updateAddress" parameterType="address">
+        UPDATE address SET
+        NAME = #{name},
+        TEL = #{tel},
+        ADDRESS = #{address}
+        <if test="ZIP != null">
+            ,ZIP = #{ZIP}
+        </if>
+        <if test="type != null">
+            ,type = #{type}
+        </if>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="insertAddress" parameterType="address" >
+        INSERT INTO address (memberId, NAME, TEL, ADDRESS, ZIP, type)
+        VALUES (#{memberId},#{name},#{tel},#{address},#{ZIP},#{type})
+    </insert>
+
+    <update id="updateType" parameterType="int">
+        UPDATE address SET type = #{type} WHERE ID =#{id}
+    </update>
 
 </mapper>

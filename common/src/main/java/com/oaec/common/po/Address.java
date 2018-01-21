@@ -7,6 +7,15 @@ public class Address {
     private String tel;
     private String address;
     private String ZIP;
+    private Integer type;
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
 
     @Override
     public String toString() {
@@ -17,6 +26,7 @@ public class Address {
                 ", tel='" + tel + '\'' +
                 ", address='" + address + '\'' +
                 ", ZIP='" + ZIP + '\'' +
+                ", type=" + type +
                 '}';
     }
 

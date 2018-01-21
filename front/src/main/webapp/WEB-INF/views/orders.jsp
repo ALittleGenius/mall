@@ -106,11 +106,11 @@
                                         <span class="amount">${requestScope.address.ZIP}</span>
                                     </td>
                                     <td>
-                                        <a>选择></a>
+                                        <a href="${path}/address/getAddressAll">选择></a>
                                     </td>
                                 </c:if>
                                 <c:if test="${requestScope.address == null}">
-                                    <td>添加收货地址</td>
+                                    <td><a href="${path}/address/getAddressFrom">添加收货地址</a></td>
                                 </c:if>
                             </tr>
 
